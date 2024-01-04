@@ -1,0 +1,3 @@
+é necessário criar um server local no pgadmin4 antes de iniciar a execução da aplicação
+
+alterar função pg.connect para funcionar no banco local 

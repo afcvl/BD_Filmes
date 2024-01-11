@@ -1,0 +1,7 @@
+('Nova York', '05-05-2020', 'Oscar', 2020)
+('Los Angeles', '25-03-2019', 'Oscar', 2019)
+('Chicago', '12-02-2018', 'Oscar', 2018)
+('Sao Francisco', '14-05-2021', 'Emmy Awards', 2021)
+('Boston', '11-03-2017', 'Emmy Awards', 2017)
+('Londres', '18-03-2015', 'Globo de Ouro', 2015)
+('Manchester', '07-01-2012', 'Globo de Ouro', 2012)

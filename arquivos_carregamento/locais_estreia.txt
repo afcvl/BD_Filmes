@@ -1,0 +1,8 @@
+(0, 'Lord of the Rings', 2009, 'Chicago')
+(1, 'Lord of the Rings', 2009, 'Sao Paulo')
+(2, 'Lord of the Rings', 2009, 'Oslo')
+(3, 'Nightmare on Elmon Street', 1978, 'New Orleans')
+(4, 'Nightmare on Elmon Street', 1978, 'Boston')
+(5, 'Pirates of the Caribbean', 2011, 'Santa Monica')
+(6, 'Pirates of the Caribbean', 2011, 'Los Angeles')
+(7, 'Jurassic Park', 1984, 'Recife')

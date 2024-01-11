@@ -143,10 +143,11 @@ class DataBase():
         id_estreia = locais_estreia.id_estreia
         titulo_original = locais_estreia.titulo_original
         ano_producao = locais_estreia.ano_producao
+        local = locais_estreia.local
         
     
         sql = f''' INSERT INTO {TABLE_NAME} 
-                   VALUES ({id_estreia}, {titulo_original}, {ano_producao}); '''
+                   VALUES ({id_estreia}, {titulo_original}, {ano_producao}, {local}); '''
                             
         print(sql)
         

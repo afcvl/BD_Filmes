@@ -1,0 +1,4 @@
+('Oscar', 'Premiacao', 'Americano', 1929)
+('Emmy Awards', 'Premiacao', 'Americano', 1949)
+('Globo de Ouro', 'Premiacao', 'Britanico', 1938)
+('Os melhores do ano', 'Premiacao', 'Brasileiro', 2009)

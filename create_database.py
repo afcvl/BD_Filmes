@@ -50,7 +50,7 @@ CREATE TABLE tb_edicao (
 	data_realizacao DATE,
 	nome_evento VARCHAR(50),
 	ano NUMERIC(4),
-	FOREIGN KEY (nome_evento) REFERENCES tb_eventos(nome_evento),
+	FOREIGN KEY (nome_evento) REFERENCES tb_eventos(nome_evento) ON DELETE CASCADE,
 	PRIMARY KEY (nome_evento, ano)
 
 );
@@ -117,6 +117,7 @@ CREATE TABLE tb_locais_estreia (
 	id_estreia NUMERIC,
 	titulo_original VARCHAR(50),
 	ano_producao NUMERIC(4),
+	local VARCHAR(50),
 	PRIMARY KEY (id_estreia),
 	FOREIGN KEY (titulo_original, ano_producao) REFERENCES tb_filmes(titulo_original, ano_producao)	
 	ON DELETE CASCADE

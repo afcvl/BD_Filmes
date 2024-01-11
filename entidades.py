@@ -58,10 +58,11 @@ class Outros:
         self.ano_producao = ano_producao
 
 class LocaisEstreia:
-    def __init__(self, id_estreia, titulo_original, ano_producao):
+    def __init__(self, id_estreia, titulo_original, ano_producao, local):
         self.id_estreia = id_estreia
         self.titulo_original = titulo_original
         self.ano_producao = ano_producao
+        self.local = local
 
 class Indicados:
     def __init__(self, id_indicacao, nome_evento, ano, tipo, titulo_original, ano_producao, nome_artistico, foi_vencedor):

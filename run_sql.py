@@ -1,8 +1,7 @@
-from sqlalchemy import create_engine
 import psycopg2 as pg
 
 conn = pg.connect(
-   database="postgres",
+   database="filmes",
     user='postgres',
     password='1234',
     host='localhost',

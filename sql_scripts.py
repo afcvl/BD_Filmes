@@ -1,39 +1,35 @@
-import psycopg2 as pg
+drop_table_sql = '''
 
-def cria_database(conection, db_name):
-    conn = conection
+drop table tb_jurados;
 
-    conn.autocommit = True
-    
-    cursor = conn.cursor()
-    
-    sql = f''' create database {db_name}; '''
-    
-    cursor.execute(sql)
+drop table tb_indicados;
 
-    conn.close()
+drop table tb_premio;
 
+drop table tb_edicao;
 
-conn = pg.connect(
-    user='postgres',
-    password='1234',
-    host='localhost',
-    port='5434'
-)
+drop table tb_eventos;
 
-cria_database(conn, 'filmes')
+drop table tb_documentarios;
 
-# Conectar ao banco de dados recém-criado (Filmes)
-conn = pg.connect(
-    database="filmes",
-    user='postgres',
-    password='1234',
-    host='localhost',
-    port='5434'
-)
-conn.autocommit = True
+drop table tb_locais_estreia;
 
-cursor = conn.cursor()
+drop table tb_diretores;
+
+drop table tb_produtores;
+
+drop table tb_roteiristas;
+
+drop table tb_ator_principal;
+
+drop table tb_ator_elenco;
+
+drop table tb_outros;
+
+drop table tb_pessoa;
+
+drop table tb_filmes;
+'''
 
 create_table_sql = '''
 
@@ -182,9 +178,3 @@ CREATE TABLE tb_ator_elenco (
 	FOREIGN KEY (nome_artistico) REFERENCES tb_pessoa(nome_artistico) ON DELETE CASCADE
 );
 '''
-
-# Executar a query para criar a tabela
-cursor.execute(create_table_sql)
-
-# Fechar a conexão com o banco de dados 'Filmes'
-conn.close()

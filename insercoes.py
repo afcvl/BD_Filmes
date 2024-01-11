@@ -10,7 +10,7 @@ class DataBase():
 
         cursor.execute(sql)
 
-        self.connection.close()
+        #self.connection.close()
     
     def insere_evento(self, evento):
         TABLE_NAME = 'tb_eventos'
@@ -208,7 +208,7 @@ class DataBase():
         nome_artistico = roteiristas.nome_artistico
 
         sql = f''' INSERT INTO {TABLE_NAME} 
-                    VALUES ('{titulo_filme}', {ano_producao}, '{nome_artistico}'); '''
+                    VALUES ({titulo_filme}, {ano_producao}, {nome_artistico}); '''
                             
         print(sql)
         

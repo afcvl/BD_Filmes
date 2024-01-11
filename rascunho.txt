@@ -2,7 +2,7 @@ FILMES:
 ('Wall-e', 2002, 'Wall-e', 'Animacao', 'Ingles', 500000)
 ('Jurassic Park', 1984, 'Parque Jurassico', 'Ficcao', 'Ingles', 230000)
 ('Finding Nemo', 2001, 'Procurando o Nemo', 'Animacao', 'Ingles', 400000)
-('Nightmare on Elmon Street', 1978, 'A hora do Pesadelo', 'Terror', 'Inlges', 340000)
+('Nightmare on Elmon Street', 1978, 'A hora do Pesadelo', 'Terror', 'Ingles', 340000)
 ('Mamma Mia', 2014, 'Mamma Mia', 'Comedia', 'Ingles', 260000)
 ('Pirates of the Caribbean', 2011, 'Piratas do Caribe', 'Aventura', 'Ingles', 450000)
 ('The Avengers', 2015, 'Os Vingadores', 'Acao', 'Ingles', 1200000)
@@ -62,7 +62,7 @@ PREMIO:
 
 INDICACAO:
 (0, 'Oscar', 2020, 'Melhor Ator', 'Jurassic Park', 1984, 'Adam Sandler', 'Não')
-(1, 'Oscar', 2020, 'Melhor Roteirista')
+(1, 'Oscar', 2020, 'Melhor Roteirista', 'Pirates of the Caribbean', 2011, 'Johnny Depp', 'Sim')
 (2, 'Oscar', 2018, 'Melhor Ator')
 (3, 'Oscar', 2018, 'Melhor Roteirista')
 (4, 'Oscar', 2019, 'Melhor Ator')

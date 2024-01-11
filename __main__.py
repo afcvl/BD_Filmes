@@ -102,16 +102,16 @@ def menu_cadastro(db_filmes):
                 
                 flag = input('O filme é um documentário? s/n')
                 
-                if flag == 's': # to-do
+                if flag.lower() == 's':
                     documentario = Documentario(reg[0], reg[1])
-                    #db_filmes.insere_documentario(documentario)
+                    db_filmes.insere_documentario(documentario)
                     
                 else:
                     outro = Outros(reg[0], reg[1])
-                    #db_filmes.insere_outros(outro)
+                    db_filmes.insere_outros(outro)
                 
     
-            case "6": # to-do
+            case "6":
                 print("Digite as informacoes da indicacao no formato: 'id_indicacao', 'nome_evento', ano, 'tipo', 'titulo_original', 'ano_producao', 'nome_artistico', 'foi_vencedor'")
                 print("Exemplo: 0, 'Oscar', 2020, 'Melhor Ator', 'Jurassic Park', 1984, 'Adam Sandler', 'Não'")
                 print(f'Lembre-se, é necessario já ter cadastrado os dados do evento, da edicao, do filme e da pessoa"')
@@ -120,6 +120,34 @@ def menu_cadastro(db_filmes):
                 reg = [i.strip() for i in  reg]
                 indicacao = Indicados(reg[0], reg[1], reg[2], reg[3], reg[4], reg[5], reg[6], reg[7])
                 db_filmes.insere_indicados(indicacao)
+                
+                print()
+                print('Qual o papel dessa pessoa no filme?')
+                print('Opções: diretor, produtor, roteirista, ator_principal, ator_elenco')
+                flag = input('Papel no filme: ')
+                print()
+                
+                match flag:
+                    case 'diretor':
+                        diretor = Diretores(reg[4], reg[5], reg[6])
+                        db_filmes.insere_diretores(diretor)
+                        
+                    case 'produtor':
+                        produtor = Produtores(reg[4], reg[5], reg[6])
+                        db_filmes.insere_produtores(produtor)
+                    
+                    case 'roteirista':
+                        roteirista = Roteiristas(reg[4], reg[5], reg[6])
+                        db_filmes.insere_roteiristas(roteirista)
+                    
+                    case 'ator_principal':
+                        ator_princ = AtorPrincipal(reg[4], reg[5], reg[6])
+                        db_filmes.insere_ator_princ(ator_princ)
+                    
+                    case 'ator_elenco':
+                        ator_elenco = AtorElenco(reg[4], reg[5], reg[6])
+                        db_filmes.insere_ator_elenco(ator_elenco)
+                    
 
             case "7": 
                 return

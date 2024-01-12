@@ -1,5 +1,9 @@
 from entidades import * 
 from insercoes import *
+from sqlalchemy import create_engine
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 def menu_principal(db_filmes):
     
@@ -8,21 +12,33 @@ def menu_principal(db_filmes):
         print("2. Gerar grafico com os 10 autores com maior numero de premios")
         print("3. Gerar grafico com os 10 filmes mais premiados")
         print("4. Gerar grafico com os 10 filmes de maior arrecadacao")
-        print("5. Dado um premio, pesquisar quais autores ou filmes foram nominados e premiados")
-        print("6. Sair")
+        print("5. Listar os atores nominados como melhor ator em todos os eventos existentes")
+        print("6. Dado um premio, pesquisar quais autores ou filmes foram nominados e premiados")
+        print("7. Sair")
         opcao = input("Digite a sua opcao: ")
         match opcao:
             case "1":
                 menu_cadastro(db_filmes)
             case "2":
-                pass
+                grafico1(db_filmes.connection)
             case "3":
-                pass
+                grafico2(db_filmes.connection)
             case "4":
-                pass
+                grafico3(db_filmes.connection)
             case "5":
-                pass
+                lista_melhores_atores(db_filmes.connection)
             case "6":
+                print("Escolha um premio no formato: 'nome_premio', ano, 'tipo'")
+                print("Exemplo: 'Oscar', 2018, 'Melhor Ator'")
+                
+                premio = input('premio: ')
+                premio = premio.split(",")
+                premio = [i.strip() for i in  premio]
+                premio = Premio(premio[0], premio[1], premio[2], '')
+                
+                indicados_do_premio(db_filmes.connection, premio)
+                
+            case "7":
                 exit()
 
 def menu_cadastro(db_filmes):
@@ -48,7 +64,6 @@ def menu_cadastro(db_filmes):
                 pessoa = Pessoa(reg[0], reg[1], reg[2], reg[3], reg[4], reg[5], reg[6], reg[7])
                 db_filmes.insere_pessoa(pessoa)
                 
-                
             case "2":
                 print("Digite as informacoes do evento no formato: 'nome_evento','tipo', 'nacionalidade', ano_inicio")
                 print("Exemplo: 'Oscar', 'Premiacao', 'Americano', 1929")
@@ -70,7 +85,6 @@ def menu_cadastro(db_filmes):
                     edicao = Edicao(reg[0], reg[1], reg[2], reg[3])
                     db_filmes.insere_edicao(edicao)
                     
-            
             case "3":
                 print("Digite as informacoes da edicao no formato: 'localizacao','data_realizacao', 'nome_evento', ano")
                 print("Exemplo: 'Nova York', '05-05-2020', 'Oscar', 2020")
@@ -81,7 +95,6 @@ def menu_cadastro(db_filmes):
                 edicao = Edicao(reg[0], reg[1], reg[2], reg[3])
                 db_filmes.insere_edicao(edicao)
                 
-    
             case "4":
                 print("Digite as informacoes do premio no formato: 'nome_evento', ano, 'tipo', 'nome_premio'")
                 print("Exemplo: 'Oscar', 2020, 'Melhor Ator', 'Oscar'")
@@ -110,7 +123,6 @@ def menu_cadastro(db_filmes):
                     outro = Outros(reg[0], reg[1])
                     db_filmes.insere_outros(outro)
                 
-    
             case "6":
                 print("Digite as informacoes da indicacao no formato: 'id_indicacao', 'nome_evento', ano, 'tipo', 'titulo_original', 'ano_producao', 'nome_artistico', 'foi_vencedor'")
                 print("Exemplo: 0, 'Oscar', 2020, 'Melhor Ator', 'Jurassic Park', 1984, 'Adam Sandler', 'Não'")
@@ -153,7 +165,100 @@ def menu_cadastro(db_filmes):
                 return
             case "8":
                 exit()
-            
+        
+def grafico1(conn):
+    consulta_sql = "SELECT * FROM tb_indicados WHERE foi_vencedor = 'Sim';"
+    
+    cursor = conn.cursor()
+
+    cursor.execute(consulta_sql)
+
+    resultados = cursor.fetchall()
+    
+    cursor.close()
+    
+    colunas = [desc[0] for desc in cursor.description]
+    df = pd.DataFrame(resultados, columns=colunas)
+    
+    sns.histplot(df['nome_artistico'])
+    plt.show()
+    
+def grafico2(conn):
+    consulta_sql = "SELECT * FROM tb_indicados WHERE foi_vencedor = 'Sim';"
+    
+    cursor = conn.cursor()
+
+    cursor.execute(consulta_sql)
+
+    resultados = cursor.fetchall()
+    
+    cursor.close()
+    
+    colunas = [desc[0] for desc in cursor.description]
+    df = pd.DataFrame(resultados, columns=colunas)
+    
+    sns.histplot(df['titulo_original'])
+    plt.xticks(rotation=20, ha="right")
+    plt.show()
+    
+def grafico3(conn):
+    consulta_sql = "SELECT * FROM tb_filmes;"
+    
+    cursor = conn.cursor()
+
+    cursor.execute(consulta_sql)
+
+    resultados = cursor.fetchall()
+    
+    cursor.close()
+    
+    colunas = [desc[0] for desc in cursor.description]
+    df = pd.DataFrame(resultados, columns=colunas)
+    
+    print(df[['arrecadacao_prim_ano','titulo_original']].sort_values(by='arrecadacao_prim_ano', ascending=False))
+    plt.bar(df['titulo_original'], df['arrecadacao_prim_ano'])
+    plt.xticks(rotation=30, ha="right")
+    plt.show()
+    
+def lista_melhores_atores(conn):
+    consulta_sql = "SELECT * FROM tb_indicados WHERE foi_vencedor = 'Sim' AND tipo = 'Melhor Ator';"
+    
+    cursor = conn.cursor()
+
+    cursor.execute(consulta_sql)
+
+    resultados = cursor.fetchall()
+    
+    cursor.close()
+    
+    colunas = [desc[0] for desc in cursor.description]
+    df = pd.DataFrame(resultados, columns=colunas)
+    
+    print()
+    print('Lista de Melhores Atores')
+    print(f" {df[['nome_evento','ano','nome_artistico']]}")
+    print()
+
+    
+def indicados_do_premio(conn, premio):
+    consulta_sql = f"SELECT * FROM tb_indicados WHERE nome_evento = {premio.nome_evento} AND ano = {premio.ano} AND tipo = {premio.tipo};"
+    
+    cursor = conn.cursor()
+
+    cursor.execute(consulta_sql)
+
+    resultados = cursor.fetchall()
+    
+    cursor.close()
+    
+    colunas = [desc[0] for desc in cursor.description]
+    df = pd.DataFrame(resultados, columns=colunas)
+    
+    print()
+    print('Lista de indicados')
+    print(f" {df[['nome_evento','ano','nome_artistico','titulo_original','foi_vencedor']]}")
+    print()
+
 def main():
     
     conn = pg.connect(
@@ -169,6 +274,8 @@ def main():
     conn.autocommit = True
     
     menu_principal(db_filmes)
+    
+    grafico1(db_filmes)
     
 
 if __name__ == "__main__":

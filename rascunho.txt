@@ -24,13 +24,13 @@ PREMIO:
 
 
 INDICACAO:
-(29, 'Oscar', 2018, 'Melhor Atriz Coadjuvante', 'Nightmare on Elm Street', 1978, 'Heather Langenkamp', 'Não')
-(30, 'Emmy Awards', 2017, 'Melhor Roteiro Original', 'O Auto da Compadecida', 2004, 'Ariano Suassuna', 'Não')
-(31, 'Globo de Ouro', 2015, 'Melhor Atriz Coadjuvante', 'Jurassic Park', 1984, 'Laura Dern', 'Sim')
-(32, 'Oscar', 2018, 'Melhor Fotografia', 'The Avengers', 2015, 'Seamus McGarvey', 'Não')
-(33, 'Oscar', 2019, 'Melhor Roteiro Adaptado', 'Harry Potter', 2001, 'J.K. Rowling', 'Não')
-(34, 'Globo de Ouro', 2012, 'Melhor Ator Coadjuvante', 'Finding Nemo', 2001, 'Albert Brooks', 'Sim')
-(35, 'Oscar', 2019, 'Melhor Direção de Arte', 'Mamma Mia', 2014, 'Alan MacDonald', 'Não')
+(43, 'Oscar', 2018, 'Melhor Ator', 'Nightmare on Elm Street', 1978, 'Sandra Bullock', 'Nao')
+(44, 'Emmy Awards', 2017, 'Melhor Figurino', 'O Auto da Compadecida', 2004, 'Quentin Tarantino', 'Nao')
+(45, 'Globo de Ouro', 2015, 'Melhor Ator', 'Jurassic Park', 1984, 'Brie Larson', 'Sim')
+(46, 'Oscar', 2018, 'Melhor Filme', 'The Avengers', 2015, 'Dwayne Johnson', 'Sim')
+(48, 'Oscar', 2019, 'Melhor Filme', 'Harry Potter', 2001, 'Anne Hathaway', 'Nao')
+(49, 'Globo de Ouro', 2012, 'Melhor Ator', 'Finding Nemo', 2001, 'Anne Hathaway', 'Sim')
+(50, 'Oscar', 2019, 'Melhor Ator', 'Mamma Mia', 2014, 'Keanu Reeves', 'Nao')
 
 PESSOA:
 ('Julia Roberts', 'Julia Fiona Roberts', 'Feminino', 1967, '', 1987, 35, 'Viva'),

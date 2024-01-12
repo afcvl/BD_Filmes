@@ -1,5 +1,5 @@
 import psycopg2 as pg
-from entidades import *
+from metodos.tabelas import *
 
 class DataBase():
     def __init__(self, conn):
@@ -24,8 +24,6 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME}
                     VALUES ({nome}, {tipo}, {nacionalidade}, {ano_inicio}); '''
         
-        print(sql)
-        
         self.executa_sql(sql)
         
     def insere_edicao(self, edicao):
@@ -39,7 +37,6 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
         VALUES ({localizacao}, {data_realizacao}, {nome_evento}, {ano}); '''
         
-        print(sql)
         
         self.executa_sql(sql)
     
@@ -52,8 +49,7 @@ class DataBase():
         sql = f''' INSERT INTO tb_premio
             VALUES ({nome_evento}, {ano}, {tipo}, {nome_premio}) '''
                             
-        print(sql)
-        
+           
         self.executa_sql(sql)
       
     def insere_pessoa(self, pessoa):
@@ -71,8 +67,7 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
                     VALUES ({nome_artistico}, {nome_real}, {sexo}, {ano_nasc}, {site},
                             {ano_inicio}, {nro_total_anos}, {situacao}); '''
-                            
-        print(sql)
+                                   
         
         self.executa_sql(sql)  
     
@@ -87,8 +82,7 @@ class DataBase():
 
         sql = f''' INSERT INTO {TABLE_NAME}
             VALUES ({id_jurado}, {nome_evento}, {ano}, {tipo}) '''
-                            
-        print(sql)
+                                 
         
         self.executa_sql(sql)
     
@@ -107,7 +101,6 @@ class DataBase():
                    VALUES ({titulo_orig}, {ano}, {titulo_brasil}, {classe},
                             {idioma_orig}, {arrec_prim_ano}); '''
                             
-        print(sql)
         
         self.executa_sql(sql)
         
@@ -120,7 +113,7 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
                    VALUES ({titulo_original}, {ano_producao}); '''
                             
-        print(sql)
+        
         
         self.executa_sql(sql)
         
@@ -133,7 +126,6 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
                    VALUES ({titulo_original}, {ano_producao}); '''
                             
-        print(sql)
         
         self.executa_sql(sql)        
         
@@ -149,7 +141,6 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
                    VALUES ({id_estreia}, {titulo_original}, {ano_producao}, {local}); '''
                             
-        print(sql)
         
         self.executa_sql(sql)     
 
@@ -169,8 +160,7 @@ class DataBase():
                    VALUES ({id_indicacao}, {nome_evento}, {ano}, {tipo}, {titulo_original}, 
                             {ano_producao}, {nome_artistico}, {foi_vencedor}); '''
                             
-        print(sql)
-        
+         
         self.executa_sql(sql)     
 
     def insere_diretores(self, diretores):
@@ -183,8 +173,7 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
                    VALUES ({titulo_filme}, {ano_producao}, {nome_artistico}); '''
                             
-        print(sql)
-        
+         
         self.executa_sql(sql)    
 
     def insere_produtores(self, produtores):
@@ -197,8 +186,7 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
                     VALUES ({titulo_filme}, {ano_producao}, {nome_artistico}); '''
                             
-        print(sql)
-        
+            
         self.executa_sql(sql)    
         
     def insere_roteiristas(self, roteiristas):
@@ -211,7 +199,6 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
                     VALUES ({titulo_filme}, {ano_producao}, {nome_artistico}); '''
                             
-        print(sql)
         
         self.executa_sql(sql) 
         
@@ -223,9 +210,8 @@ class DataBase():
         nome_artistico = ator_principal.nome_artistico
 
         sql = f''' INSERT INTO {TABLE_NAME} 
-                    VALUES ({titulo_filme}, {ano_producao}, {nome_artistico}); '''
-                            
-        print(sql)
+                    VALUES ({titulo_filme}, {ano_producao}, {nome_artistico}); '''                    
+        
         
         self.executa_sql(sql) 
         
@@ -239,6 +225,5 @@ class DataBase():
         sql = f''' INSERT INTO {TABLE_NAME} 
                     VALUES ({titulo_filme}, {ano_producao}, {nome_artistico}); '''
                             
-        print(sql)
         
         self.executa_sql(sql) 

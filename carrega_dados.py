@@ -1,4 +1,4 @@
-from insercoes import *
+from metodos.insercoes import *
 
 def carregamento_pessoas(arquivo, db):
     

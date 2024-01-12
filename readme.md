@@ -80,8 +80,10 @@ pip install matplotlib
 
 - Passo 1. É necessário criar um server local no Pgadmin4 antes de iniciar a execução da aplicação
 
-- Passo 2. Alterar função pg.connect com as informações do server local no arquivo create_database.py para funcionar no banco local 
+- Passo 2. Alterar função pg.connect com as informações do server local nos arquivos create_database.py, carrega_dados.py e main.py para funcionar com o seu banco local 
 
 - Passo 3. Rodar o script create_database.py apenas uma vez
 
-- Passo 4. Utilizar o sistema em __main__.py
+- Passo 4. Rodar o script carrega_dados.py apenas uma vez
+
+- Passo 5. Utilizar o sistema em __main__.py

@@ -3,8 +3,11 @@
 Grupo:
 
 Tiago Lima Fraga 13859638
+
 Andre Fabiano de Carvalho 13672425
+
 Emmily Aparecida Boesing Noikamp 13673044
+
 Luís Henrique Fernandes Ramires 13671998
 
 ## Dependências

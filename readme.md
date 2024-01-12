@@ -2,26 +2,67 @@
 
 ## Dependências
 
-- Pandas
+Primeiramente é necessário instalar o Pip, um gerenciador de pacotes para Python
 
-Facilmente instalável utilizando o pip
+Ubuntu, Linux Mint, Debian:
+
+```
+sudo apt install python3-pip
+```
+
+Arch-based:
+
+```
+sudo pacman -S python-pip
+```
+
+# Instalação automática
+
+Para simplificar a instalação das dependências utilizadas no sistema, execute o script de instalação usando o seguinte comando (apenas para sistemas Linux)
+
+```
+./dependecy.sh 
+```
+
+# Instalação manual
+
+- Psycopg2
+
+```
+pip install psycopg2 
+```
+
+[Documentação de instalação do Psycopg2](https://www.psycopg.org/docs/install.html#quick-install)
+
+- SQLAlchemy
+
+```
+pip install SQLAlchemy 
+```
+
+[Documentação de instalação do SQLAlchemy](https://docs.sqlalchemy.org/en/20/intro.html#installation)
+
+- Seaborn
+
+```
+pip install seaborn 
+```
+
+[Documentação de instalação do Seaborn](https://seaborn.pydata.org/installing.html)
+
+- Pandas
 
 ```
 pip install pandas
 ```
 
-Caso necessário instalar de outra maneira, basta seguir a documentação disponível:
-
 [Documentação de instalação do Pandas](https://pandas.pydata.org/docs/getting_started/install.html)
 
 - Matplotlib
 
-Facilmente instalável utilizando o pip
-
 ```
 pip install matplotlib 
 ```
-Caso necessário instalar de outra maneira, basta seguir a documentação disponível:
 
 [Documentação de instalação do Matplotlib](https://matplotlib.org/stable/users/installing/index.html)
 

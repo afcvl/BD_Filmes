@@ -1,5 +1,6 @@
 from entidades import * 
 from insercoes import *
+from carrega_dados import *
 from sqlalchemy import create_engine
 import pandas as pd
 import seaborn as sns
@@ -8,26 +9,29 @@ import matplotlib.pyplot as plt
 def menu_principal(db_filmes):
     
     while True:
-        print("1. Cadastrar registros")
-        print("2. Gerar grafico com os 10 autores com maior numero de premios")
-        print("3. Gerar grafico com os 10 filmes mais premiados")
-        print("4. Gerar grafico com os 10 filmes de maior arrecadacao")
-        print("5. Listar os atores nominados como melhor ator em todos os eventos existentes")
-        print("6. Dado um premio, pesquisar quais autores ou filmes foram nominados e premiados")
-        print("7. Sair")
+        print("1. Cadastrar registros manualmente")
+        print("2. Cadastrar registros a partir de tabelas .csv")
+        print("3. Gerar grafico com os 10 autores com maior numero de premios")
+        print("4. Gerar grafico com os 10 filmes mais premiados")
+        print("5. Gerar grafico com os 10 filmes de maior arrecadacao")
+        print("6. Listar os atores nominados como melhor ator em todos os eventos existentes")
+        print("7. Dado um premio, pesquisar quais autores ou filmes foram nominados e premiados")
+        print("8. Sair")
         opcao = input("Digite a sua opcao: ")
         match opcao:
             case "1":
                 menu_cadastro(db_filmes)
             case "2":
-                grafico1(db_filmes.connection)
+                menu_cadastro_csv(db_filmes)
             case "3":
-                grafico2(db_filmes.connection)
+                grafico1(db_filmes.connection)
             case "4":
-                grafico3(db_filmes.connection)
+                grafico2(db_filmes.connection)
             case "5":
-                lista_melhores_atores(db_filmes.connection)
+                grafico3(db_filmes.connection)
             case "6":
+                lista_melhores_atores(db_filmes.connection)
+            case "7":
                 print("Escolha um premio no formato: 'nome_premio', ano, 'tipo'")
                 print("Exemplo: 'Oscar', 2018, 'Melhor Ator'")
                 
@@ -38,26 +42,61 @@ def menu_principal(db_filmes):
                 
                 indicados_do_premio(db_filmes.connection, premio)
                 
-            case "7":
+            case "8":
                 exit()
+
+def menu_cadastro_csv(db_filmes):
+    while True:
+        print("Digite o nome do arquivo e a tabela correspondente a ser inserida ou 'sair' para voltar ao menu principal")
+        print("Exemplo: pessoas.csv pessoa")
+        print("Tabelas: pessoa, eventos, edicao_eventos, filmes, locais_estreia, premios, indicacoes")
+        try:
+            opcao = input()
+            opcao = opcao.split(" ")
+        except:
+            print("\nUso: [nome arquivo] [tabela]\n")
+            continue
+
+        try:
+            match opcao[1]:
+                case "pessoa":
+                    carregamento_pessoas(opcao[0], db_filmes) 
+                case "eventos":
+                    carregamento_eventos(opcao[0], db_filmes)
+                case "edicao_eventos":
+                    carregamento_eventos(opcao[0], db_filmes)
+                case "filmes":
+                    carregamento_filmes(opcao[0], db_filmes)
+                case "locais_estreia":
+                    carregamento_locais_estreia(opcao[0], db_filmes)
+                case "premios":
+                    carregamento_premios(opcao[0], db_filmes)
+                case "indicacoes":
+                    carregamento_indicacoes(opcao[0], db_filmes)
+                case "sair":
+                    return
+                case _:
+                    print("\nERRO: Opcao invalida\n")
+        except:
+            print("\nERRO: erro ao abrir arquivo\n")
 
 def menu_cadastro(db_filmes):
     while True:
-        print("O que voce deseja cadastrar?")
+        print("O que deseja cadastrar?")
         print("1. Pessoas")
         print("2. Eventos")
         print("3. Edicao de evento")
         print("4. Premios")
         print("5. Filmes")        
         print("6. Indicações")
-
         print("7. Menu principal")
         print("8. Sair")
 
         try:
             opcao = input("Digite a sua opcao: ")
         except:
-            print("Opcao invalida")
+            print("\nERRO: Opcao invalida\n")
+            continue
 
         match opcao:
             case "1":
@@ -71,8 +110,8 @@ def menu_cadastro(db_filmes):
                     db_filmes.insere_pessoa(pessoa)
                 except:
                     print("\nERRo: Registro invalido, siga a formatacao correta: 'nome_artistico', 'nome_real', 'sexo', ano_nascimento, 'site', ano_inicio, total_anos, 'situacao'\n")
-                    menu_cadastro(db_filmes)
-                
+                    continue
+
             case "2":
                 print("Digite as informacoes do evento no formato: 'nome_evento','tipo', 'nacionalidade', 'ano_inicio'")
                 print("Exemplo: 'Oscar', 'Premiacao', 'Americano', 1929\n")
@@ -84,7 +123,7 @@ def menu_cadastro(db_filmes):
                     db_filmes.insere_evento(evento)
                 except:
                     print("\nERRO: Registro invalido, siga a formatacao correta: 'nome_evento','tipo', 'nacionalidade', 'ano_inicio'\n")
-                    menu_cadastro(db_filmes)
+                    continue 
 
                 flag = input('deseja inserir uma edição do evento? S/N: ')
                 print()
@@ -101,7 +140,7 @@ def menu_cadastro(db_filmes):
                     except:
                         print("\nERRO: Registro invalido, siga a formatacao correta: 'localizacao','data_realizacao', 'nome_evento', 'ano'\n")
                         print(f"Lembre-se que o evento deve ser '{reg[0]}'")
-                        menu_cadastro(db_filmes)
+                        continue 
 
             case "3":
                 print("Digite as informacoes da edicao no formato: 'localizacao','data_realizacao', 'nome_evento', ano")
@@ -115,7 +154,7 @@ def menu_cadastro(db_filmes):
                     db_filmes.insere_edicao(edicao)
                 except:
                     print("\nERRO: Registro invalido, siga a formatacao correta: 'localizacao','data_realizacao', 'nome_evento', 'ano'\n")
-                    menu_cadastro(db_filmes)
+                    continue 
 
             case "4":
                 print("Digite as informacoes do premio no formato: 'nome_evento', ano, 'tipo', 'nome_premio'")
@@ -128,7 +167,7 @@ def menu_cadastro(db_filmes):
                     db_filmes.insere_premio(premio)
                 except:
                     print("\nERRO: Registro invalido, siga a formatacao correta: 'nome_evento', ano, 'tipo', 'nome_premio'\n")
-                    menu_cadastro(db_filmes)
+                    continue 
                 
             case "5":
                 print("Digite as informacoes do filme no formato: 'titulo_original', 'ano_producao', 'titulo_no_brasil', 'classe', 'idioma_original', 'arrecadacao_prim_ano'")
@@ -141,7 +180,7 @@ def menu_cadastro(db_filmes):
                     db_filmes.insere_filme(filme)
                 except:
                     print("\nERRO: Registro invalido, siga a formatacao correta: 'titulo_original', 'ano_producao', 'titulo_no_brasil', 'classe', 'idioma_original', 'arrecadacao_prim_ano'\n")
-                    menu_cadastro(db_filmes)
+                    continue 
                 
                 flag = input('O filme é um documentário? S/N')
                 
@@ -165,7 +204,7 @@ def menu_cadastro(db_filmes):
                     db_filmes.insere_indicados(indicacao)
                 except:
                     print("\nERRO: Registro invalido, siga a formatacao correta: 'id_indicacao', 'nome_evento', 'ano', 'tipo', 'titulo_original', 'ano_producao', 'nome_artistico', 'foi_vencedor'\n")
-                    menu_cadastro(db_filmes)
+                    continue 
                 
                 print('Qual o papel dessa pessoa no filme?')
                 print('Opções: diretor, produtor, roteirista, ator_principal, ator_elenco')
@@ -194,7 +233,7 @@ def menu_cadastro(db_filmes):
                         db_filmes.insere_ator_elenco(ator_elenco)
                     case _:
                         print("\nERRO: Opcao invalida\n")
-                        menu_cadastro(db_filmes)
+                        continue 
                     
             case "7": 
                 return

@@ -1,5 +1,12 @@
 # EP 3 Banco de dados I
 
+Grupo:
+
+Tiago Lima Fraga 13859638
+Andre Fabiano de Carvalho 13672425
+Emmily Aparecida Boesing Noikamp 13673044
+Luís Henrique Fernandes Ramires 13671998
+
 ## Dependências
 
 Primeiramente é necessário instalar o Pip, um gerenciador de pacotes para Python
@@ -16,7 +23,7 @@ Arch-based:
 sudo pacman -S python-pip
 ```
 
-# Instalação automática
+### Instalação automática
 
 Para simplificar a instalação das dependências utilizadas no sistema, execute o script de instalação usando o seguinte comando (apenas para sistemas Linux)
 
@@ -24,7 +31,7 @@ Para simplificar a instalação das dependências utilizadas no sistema, execute
 ./dependecy.sh 
 ```
 
-# Instalação manual
+### Instalação manual
 
 - Psycopg2
 

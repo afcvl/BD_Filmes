@@ -102,7 +102,7 @@ def carregamento_indicacoes(arquivo, db):
 conn = pg.connect(
     database='filmes',
     user='postgres',
-    password='1234',
+    password='133122',
     host='localhost',
     port='5432'
 )

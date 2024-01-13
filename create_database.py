@@ -16,7 +16,7 @@ def cria_database(conection, db_name):
 # ----- Alterar com as suas credenciais ------
 conn = pg.connect(
     user='postgres',
-    password='1234',
+    password='133122',
     host='localhost',
     port='5432'
 )
@@ -28,7 +28,7 @@ cria_database(conn, 'filmes')
 conn = pg.connect(
     database="filmes",
     user='postgres',
-    password='1234',
+    password='133122',
     host='localhost',
     port='5432'
 )

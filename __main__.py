@@ -161,7 +161,7 @@ def menu_cadastro(db_filmes):
                     reg = input()
                     reg = reg.split(",")
                     reg = [i.strip() for i in  reg]
-                    indicacao = Indicados(reg[0], reg[1], int(reg[2]), reg[3], reg[4], int(reg[5]), reg[6], reg[7])
+                    indicacao = Indicados(int(reg[0]), reg[1], int(reg[2]), reg[3], reg[4], int(reg[5]), reg[6], reg[7])
                     db_filmes.insere_indicados(indicacao)
                 except:
                     print("\nERRO: Registro invalido, siga a formatacao correta: 'id_indicacao', 'nome_evento', ano, 'tipo', 'titulo_original', ano_producao, 'nome_artistico', 'foi_vencedor'\n")
@@ -298,7 +298,7 @@ def main():
     conn = pg.connect(
         database='filmes',
         user='postgres',
-        password='1234',
+        password='133122',
         host='localhost',
         port='5432'
     )

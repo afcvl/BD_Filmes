@@ -13,23 +13,24 @@ def cria_database(conection, db_name):
 
     conn.close()
 
-
+# ----- Alterar com as suas credenciais ------
 conn = pg.connect(
     user='postgres',
     password='1234',
     host='localhost',
-    port='5434'
+    port='5432'
 )
 
 cria_database(conn, 'filmes')
 
 # Conectar ao banco de dados recém-criado (Filmes)
+# ----- Alterar com as suas credenciais ------
 conn = pg.connect(
     database="filmes",
     user='postgres',
     password='1234',
     host='localhost',
-    port='5434'
+    port='5432'
 )
 conn.autocommit = True
 

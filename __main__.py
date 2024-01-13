@@ -294,12 +294,13 @@ def indicados_do_premio(conn, premio):
 
 def main():
     
+    # ----- Alterar com as suas credenciais ------
     conn = pg.connect(
         database='filmes',
         user='postgres',
         password='1234',
         host='localhost',
-        port='5434'
+        port='5432'
     )
 
     db_filmes = DataBase(conn)

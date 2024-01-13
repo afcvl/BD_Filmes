@@ -98,13 +98,13 @@ def carregamento_indicacoes(arquivo, db):
         indicacao = Indicados(int(linha[0]), linha[1], int(linha[2]), linha[3], linha[4], int(linha[5]), linha[6], linha[7])
         db_filmes.insere_indicados(indicacao)
         
-        
+# ----- Alterar com as suas credenciais ------
 conn = pg.connect(
     database='filmes',
     user='postgres',
     password='1234',
     host='localhost',
-    port='5434'
+    port='5432'
 )
 
 db_filmes = DataBase(conn)
